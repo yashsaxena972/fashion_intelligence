@@ -2,11 +2,11 @@
     ViewBag.Title = "Products List";
 }
 
-<h2>Flipkart Fashion Products List</h2>
+<h2>Flipkart Fashion Top T-shirts</h2>
 <ul>
     @foreach(string str in ViewBag.Products)
     {
-        <li>@str</li>
+        <li><img src=@str></li>
     }
 </ul>
 

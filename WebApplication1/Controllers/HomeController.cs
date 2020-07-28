@@ -5,6 +5,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HtmlAgilityPack;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
 
 namespace WebApplication1.Controllers
 {
@@ -35,6 +37,7 @@ namespace WebApplication1.Controllers
         {
             System.Net.ServicePointManager.Expect100Continue = false;
 
+            /*
             var data = new MyWebClient().DownloadString("https://www.flipkart.com/clothing-and-accessories/topwear/tshirt/men-tshirt/pr?sid=clo,ash,ank,edy&otracker=categorytree&otracker=nmenu_sub_Men_0_T-Shirts");
             var doc = new HtmlDocument();
             doc.LoadHtml(data);
@@ -45,7 +48,27 @@ namespace WebApplication1.Controllers
             {
                 Output.Add(item.InnerText.ToString());
             }
+            */
 
+
+
+            IWebDriver driver = new ChromeDriver();
+            var url = "https://www.flipkart.com/clothing-and-accessories/topwear/tshirt/men-tshirt/pr?sid=clo,ash,ank,edy&otracker=categorytree&otracker=nmenu_sub_Men_0_T-Shirts";
+            driver.Navigate().GoToUrl(url);
+            //var web = new HtmlWeb();
+            //var doc = web.Load(url);
+            //var rootNode = doc.DocumentNode;
+            var images = driver.FindElements(By.XPath("//img[@class='_3togXc']"));
+            List<String> Output = new List<string>();
+
+            //var nodes = doc.DocumentNode.SelectNodes("//div[@class='_3ZJShS _31bMyl']");
+            foreach (var src in images)
+            {
+                var links = src.GetAttribute("src");
+                Output.Add(links);
+  
+            }
+            
             ViewBag.Products = Output;
             return View();
         }
