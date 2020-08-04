@@ -9,6 +9,7 @@ namespace WebApplication1.Models
     {
         public int websiteTraffic { get; set; }
         public double internalRank { get; set; }
+        public string website { get; set; }
         public string imageLink { get; set; }
     }
 }

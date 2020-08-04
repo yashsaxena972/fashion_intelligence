@@ -26,20 +26,13 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         
-        /*
-        public String Index(string id)
-        {
-            return "id = " + id;
-        }
-        */
-        
-        
         public ActionResult Index(string products)
         {
             System.Net.ServicePointManager.Expect100Continue = false;
 
 
             IWebDriver driver = new ChromeDriver();
+            
             var flipkartUrl = "https://www.flipkart.com/clothing-and-accessories/topwear/tshirt/men-tshirt/pr?sid=clo,ash,ank,edy&otracker=categorytree&otracker=nmenu_sub_Men_0_T-Shirts";
             driver.Navigate().GoToUrl(flipkartUrl);
             var flipkartImages = driver.FindElements(By.XPath("//img[@class='_3togXc']"));
@@ -77,7 +70,7 @@ namespace WebApplication1.Controllers
             }
 
             
-            TrendingProductValue[] product = new TrendingProductValue[30]; 
+            TrendingProductValue[] product = new TrendingProductValue[40]; 
             for(int i = 0; i < product.Length; i++)
             {
                 product[i] = new TrendingProductValue();
@@ -90,6 +83,7 @@ namespace WebApplication1.Controllers
                 product[j].imageLink = item;
                 product[j].internalRank = flipkartRank;
                 product[j].websiteTraffic = 122;
+                product[j].website = "Flipkart";
                 j++;
                 flipkartRank++;
             }
@@ -99,6 +93,7 @@ namespace WebApplication1.Controllers
                 product[j].imageLink = item;
                 product[j].internalRank = amazonRank;
                 product[j].websiteTraffic = 111;
+                product[j].website = "Amazon";
                 j++;
                 amazonRank++;
             }
@@ -108,8 +103,30 @@ namespace WebApplication1.Controllers
                 product[j].imageLink = item;
                 product[j].internalRank = koovsRank;
                 product[j].websiteTraffic = 47143;
+                product[j].website = "Koovs";
                 j++;
                 koovsRank++;
+            }
+
+            var instagramUrl = "https://www.instagram.com/stealherstyle/";
+            driver.Navigate().GoToUrl(instagramUrl);
+            var instaImages = driver.FindElements(By.XPath("//img[@class='FFVAD']"));
+            List<String> instaList = new List<string>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                var links = instaImages[i].GetAttribute("src");
+                instaList.Add(links);
+
+            }
+
+            foreach (var item in instaList)
+            {
+                product[j].imageLink = item;
+                product[j].internalRank = 1;
+                product[j].websiteTraffic = 111;
+                product[j].website = "Instagram";
+                j++;
             }
 
             /*
