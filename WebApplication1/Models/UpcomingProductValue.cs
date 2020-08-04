@@ -9,5 +9,6 @@ namespace WebApplication1.Models
     {
         public int numberOfLikes { get; set; }
         public int numberOfComments { get; set; }
+        public string imageLink { get; set; }
     }
 }

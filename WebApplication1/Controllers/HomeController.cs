@@ -108,6 +108,17 @@ namespace WebApplication1.Controllers
                 koovsRank++;
             }
 
+
+
+
+
+            UpcomingProductValue[] designs = new UpcomingProductValue[40];
+            for (int i = 0; i < designs.Length; i++)
+            {
+                designs[i] = new UpcomingProductValue();
+            }
+            int k = 0;
+
             var instagramUrl = "https://www.instagram.com/stealherstyle/";
             driver.Navigate().GoToUrl(instagramUrl);
             var instaImages = driver.FindElements(By.XPath("//img[@class='FFVAD']"));
@@ -122,11 +133,10 @@ namespace WebApplication1.Controllers
 
             foreach (var item in instaList)
             {
-                product[j].imageLink = item;
-                product[j].internalRank = 1;
-                product[j].websiteTraffic = 111;
-                product[j].website = "Instagram";
-                j++;
+                designs[k].imageLink = item;
+                designs[k].numberOfLikes = 1;
+                designs[k].numberOfComments = 1;
+                k++;
             }
 
             /*
@@ -143,11 +153,8 @@ namespace WebApplication1.Controllers
             */
 
 
-            ViewBag.Flipkart = flipkartList;
-            ViewBag.Amazon = amazonList;
-            //ViewBag.Traffic = trafficList;
-            ViewBag.Koovs = koovsList;
             ViewBag.Products = product;
+            ViewBag.Designs = designs;
             return View();
         }
         

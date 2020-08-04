@@ -39,5 +39,19 @@
 
     <div class="col-md-6">
         <h2>Top Upcoming</h2>
+        <br />
+        <br />
+        <ol>
+            @foreach (var design in ViewBag.Designs)
+            {
+                <li>
+                    <div>
+                        <p>@design.numberOfLikes</p>
+                        <p>@design.numberOfComments</p>
+                        <img src=@design.imageLink>
+                    </div>
+                </li>
+            }
+        </ol>
     </div>
 </div>
