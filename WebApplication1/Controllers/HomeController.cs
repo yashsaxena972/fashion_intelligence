@@ -159,32 +159,79 @@ namespace WebApplication1.Controllers
                 product[i] = temp;
             }
 
-            UpcomingProductValue[] designs = new UpcomingProductValue[40];
+            UpcomingProductValue[] designs = new UpcomingProductValue[30];
             for (int i = 0; i < designs.Length; i++)
             {
                 designs[i] = new UpcomingProductValue();
             }
             int k = 0;
 
-            var instagramUrl = "https://www.instagram.com/stealherstyle/";
-            driver.Navigate().GoToUrl(instagramUrl);
-            var instaImages = driver.FindElements(By.XPath("//img[@class='FFVAD']"));
-            List<String> instaList = new List<string>();
+            var instagramUrl1 = "https://www.instagram.com/stealherstyle/";
+            driver.Navigate().GoToUrl(instagramUrl1);
+            var instaImages1 = driver.FindElements(By.XPath("//img[@class='FFVAD']"));
+            List<String> instaList1 = new List<string>();
 
             for (int i = 0; i < 10; i++)
             {
-                var links = instaImages[i].GetAttribute("src");
-                instaList.Add(links);
+                var links = instaImages1[i].GetAttribute("src");
+                instaList1.Add(links);
 
             }
 
-            foreach (var item in instaList)
+            var instagramUrl2 = "https://www.instagram.com/fashionbeanscom/";
+            driver.Navigate().GoToUrl(instagramUrl2);
+            var instaImages2 = driver.FindElements(By.XPath("//img[@class='FFVAD']"));
+            List<String> instaList2 = new List<string>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                var links = instaImages2[i].GetAttribute("src");
+                instaList2.Add(links);
+
+            }
+
+            var instagramUrl3 = "https://www.instagram.com/allneutrals/";
+            driver.Navigate().GoToUrl(instagramUrl3);
+            var instaImages3 = driver.FindElements(By.XPath("//img[@class='FFVAD']"));
+            List<String> instaList3 = new List<string>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                var links = instaImages3[i].GetAttribute("src");
+                instaList3.Add(links);
+
+            }
+
+            foreach (var item in instaList1)
             {
                 designs[k].imageLink = item;
                 designs[k].numberOfLikes = 1;
                 designs[k].numberOfComments = 1;
+                designs[k].message = "Popular in female celebrities";
                 k++;
             }
+
+            foreach (var item in instaList2)
+            {
+                designs[k].imageLink = item;
+                designs[k].numberOfLikes = 1;
+                designs[k].numberOfComments = 1;
+                designs[k].message = "Popular in male celebrities";
+                k++;
+            }
+
+            foreach (var item in instaList3)
+            {
+                designs[k].imageLink = item;
+                designs[k].numberOfLikes = 1;
+                designs[k].numberOfComments = 1;
+                designs[k].message = "Popular in ladies' fashion";
+                k++;
+            }
+
+            // Shuffle the contents of the Upcoming products array
+            Random rnd = new Random();
+            designs = designs.OrderBy(x => rnd.Next()).ToArray();
 
             /*
             var similarWebFlipkartUrl = "https://www.similarweb.com/website/flipkart.com/?competitors=amazon.in";

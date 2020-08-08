@@ -25,7 +25,7 @@
             @foreach (var product in ViewBag.Products)
             {
                 <li>
-                    <div style="border-radius: 15px; border: 1px solid #808080; padding: 20px; margin: 20px">
+                    <div style="border-radius: 15px; border: 1px solid #808080; padding: 20px; margin: 20px;">
                         <span class="badge">Hackermen value @product.totalValue</span>
                         <br />
                         <p>#@product.internalRank on @product.website (Website ranking: @product.websiteTraffic)</p>
@@ -47,10 +47,9 @@
             @foreach (var design in ViewBag.Designs)
             {
                 <li>
-                    <div>
-                        <p>@design.numberOfLikes</p>
-                        <p>@design.numberOfComments</p>
-                        <img src=@design.imageLink>
+                    <div style="border-radius: 15px; border: 1px solid #808080; padding: 20px; margin: 20px;">
+                        <p>@design.message</p>
+                        <img src=@design.imageLink style="max-width:450px; height:auto;">
                     </div>
                 </li>
             }
