@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
 
             IWebDriver driver = new ChromeDriver();
 
-            TrendingProductValue[] product = new TrendingProductValue[40];
+            TrendingProductValue[] product = new TrendingProductValue[30];
             for (int i = 0; i < product.Length; i++)
             {
                 product[i] = new TrendingProductValue();
@@ -234,6 +234,9 @@ namespace WebApplication1.Controllers
             designs = designs.OrderBy(x => rnd.Next()).ToArray();
 
             /*
+             * 
+             This part has been intentionally commented out because the SimlarWeb API is paid and it allows only 2 websites to be compared simultaneously in the free version
+
             var similarWebFlipkartUrl = "https://www.similarweb.com/website/flipkart.com/?competitors=amazon.in";
             driver.Navigate().GoToUrl(similarWebFlipkartUrl);
             var flipkartTraffic= driver.FindElements(By.XPath("//span[@class='websiteRanks-value']"));
